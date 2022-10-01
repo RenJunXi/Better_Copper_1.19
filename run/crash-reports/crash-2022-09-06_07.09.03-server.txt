@@ -1,0 +1,268 @@
+---- Minecraft Crash Report ----
+// I blame Dinnerbone.
+
+Time: 2022/9/6 上午7:09
+Description: Initializing game
+
+java.lang.RuntimeException: Could not execute entrypoint stage 'main' due to errors, provided by 'waystones'!
+	at net.fabricmc.loader.impl.entrypoint.EntrypointUtils.lambda$invoke0$0(EntrypointUtils.java:51)
+	at net.fabricmc.loader.impl.util.ExceptionUtil.gatherExceptions(ExceptionUtil.java:33)
+	at net.fabricmc.loader.impl.entrypoint.EntrypointUtils.invoke0(EntrypointUtils.java:49)
+	at net.fabricmc.loader.impl.entrypoint.EntrypointUtils.invoke(EntrypointUtils.java:35)
+	at net.fabricmc.loader.impl.game.minecraft.Hooks.startClient(Hooks.java:52)
+	at fudge.notenoughcrashes.fabric.mixinhandlers.ModLoaders.fabricEntrypoints(ModLoaders.java:9)
+	at net.minecraft.class_310.redirect$cnh000$catchFabricInit(class_310.java:12871)
+	at net.minecraft.class_310.<init>(class_310.java:443)
+	at net.minecraft.client.main.Main.main(Main.java:198)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:461)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+Caused by: java.lang.IllegalStateException: Registry is already frozen (trying to add key ResourceKey[minecraft:worldgen/configured_feature / waystones:waystone])
+	at net.minecraft.class_2370.method_40274(class_2370.java:81)
+	at net.minecraft.class_2370.method_31051(class_2370.java:91)
+	at net.minecraft.class_2370.method_10273(class_2370.java:87)
+	at net.fabricmc.fabric.impl.registry.sync.DynamicRegistrySync.lambda$setupSync$1(DynamicRegistrySync.java:63)
+	at net.minecraft.class_2370.mdf4c009$lambda$new$0$5(class_2370.java:596)
+	at net.minecraft.class_2370.handler$bji000$setPost(class_2370.java:674)
+	at net.minecraft.class_2370.method_31051(class_2370.java:130)
+	at net.minecraft.class_2370.method_10273(class_2370.java:87)
+	at net.minecraft.class_2370.method_10272(class_2370.java:135)
+	at net.minecraft.class_5458.method_39203(class_5458.java:135)
+	at net.minecraft.class_5458.method_30562(class_5458.java:131)
+	at net.minecraft.class_5458.method_40360(class_5458.java:122)
+	at net.minecraft.class_6803.method_39708(class_6803.java:75)
+	at net.blay09.mods.balm.fabric.world.FabricBalmWorldGen.lambda$registerConfiguredFeature$1(FabricBalmWorldGen.java:37)
+	at net.blay09.mods.balm.api.DeferredObject.resolve(DeferredObject.java:33)
+	at net.blay09.mods.balm.api.DeferredObject.resolveImmediately(DeferredObject.java:51)
+	at net.blay09.mods.balm.fabric.world.FabricBalmWorldGen.registerConfiguredFeature(FabricBalmWorldGen.java:39)
+	at net.blay09.mods.waystones.worldgen.ModWorldGen.initialize(ModWorldGen.java:62)
+	at net.blay09.mods.waystones.Waystones.initialize(Waystones.java:26)
+	at net.blay09.mods.waystones.FabricWaystones.onInitialize(FabricWaystones.java:8)
+	at net.fabricmc.loader.impl.entrypoint.EntrypointUtils.invoke0(EntrypointUtils.java:47)
+	... 9 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at net.fabricmc.loader.impl.entrypoint.EntrypointUtils.lambda$invoke0$0(EntrypointUtils.java:51)
+	at net.fabricmc.loader.impl.util.ExceptionUtil.gatherExceptions(ExceptionUtil.java:33)
+	at net.fabricmc.loader.impl.entrypoint.EntrypointUtils.invoke0(EntrypointUtils.java:49)
+	at net.fabricmc.loader.impl.entrypoint.EntrypointUtils.invoke(EntrypointUtils.java:35)
+	at net.fabricmc.loader.impl.game.minecraft.Hooks.startClient(Hooks.java:52)
+
+-- Initialization --
+Details:
+Stacktrace:
+	at fudge.notenoughcrashes.mixinhandlers.EntryPointCatcher.handleEntryPointError(EntryPointCatcher.java:28)
+	at net.minecraft.class_310.redirect$cnh000$catchFabricInit(class_310.java:12873)
+	at net.minecraft.class_310.<init>(class_310.java:443)
+	at net.minecraft.client.main.Main.main(Main.java:198)
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:461)
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74)
+	at net.fabricmc.loader.impl.launch.knot.KnotClient.main(KnotClient.java:23)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.19
+	Minecraft Version ID: 1.19
+	Operating System: Mac OS X (x86_64) version 13.0
+	Java Version: 17.0.3, Azul Systems, Inc.
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Azul Systems, Inc.
+	Memory: 931992656 bytes (888 MiB) / 1207959552 bytes (1152 MiB) up to 8589934592 bytes (8192 MiB)
+	CPUs: 4
+	Processor Vendor: GenuineIntel
+	Processor Name: Intel(R) Core(TM) i5-7360U CPU @ 2.30GHz
+	Identifier: Intel64 Family 6 Model 142 Stepping 9
+	Microarchitecture: unknown
+	Frequency (GHz): 2.30
+	Number of physical packages: 1
+	Number of physical CPUs: 2
+	Number of logical CPUs: 4
+	Graphics card #0 name: Intel Iris Plus Graphics 640
+	Graphics card #0 vendor: Intel
+	Graphics card #0 VRAM (MB): 1536.00
+	Graphics card #0 deviceId: 0x5926
+	Graphics card #0 versionInfo: Revision ID: 0x0006
+	Memory slot #0 capacity (MB): 4096.00
+	Memory slot #0 clockSpeed (GHz): 2.13
+	Memory slot #0 type: LPDDR3
+	Memory slot #1 capacity (MB): 4096.00
+	Memory slot #1 clockSpeed (GHz): 2.13
+	Memory slot #1 type: LPDDR3
+	Virtual memory max (MB): 8192.00
+	Virtual memory used (MB): 4937.39
+	Swap memory total (MB): 0.00
+	Swap memory used (MB): 0.00
+	JVM Flags: 11 total; -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=16m -XX:-UseAdaptiveSizePolicy -XX:-OmitStackTraceInFastThrow -XX:-DontCompileHugeMethods -Xmn128m -Xmx8192m
+	Fabric Mods: 
+		balm-fabric: Balm 4.3.0+0
+		betterbeds: Better Beds 1.2.0
+		betterfpsdist: Better FPS distance Mod 1.19-1.9
+		c2me: Concurrent Chunk Management Engine 0.2.0+alpha.8.2
+			c2me-base: Concurrent Chunk Management Engine (Base) 0.2.0+alpha.8.2
+			c2me-client-uncapvd: Concurrent Chunk Management Engine (Client/Uncap View Distance) 0.2.0+alpha.8.2
+			c2me-fixes-chunkio-threading-issues: Concurrent Chunk Management Engine (Fixes/Chunk IO/Threading Issues) 0.2.0+alpha.8.2
+			c2me-fixes-general-threading-issues: Concurrent Chunk Management Engine (Fixes/General/Threading Issues) 0.2.0+alpha.8.2
+			c2me-fixes-worldgen-threading-issues: Concurrent Chunk Management Engine (Fixes/WorldGen/Threading Issues) 0.2.0+alpha.8.2
+			c2me-fixes-worldgen-vanilla-bugs: Concurrent Chunk Management Engine (Fixes/WorldGen/Vanilla Bugs) 0.2.0+alpha.8.2
+			c2me-notickvd: Concurrent Chunk Management Engine (No Tick View Distance) 0.2.0+alpha.8.2
+			c2me-opts-allocs: Concurrent Chunk Management Engine (Optimizations/Memory Allocations) 0.2.0+alpha.8.2
+			c2me-opts-chunk-access: Concurrent Chunk Management Engine (Optimizations/Chunk Access) 0.2.0+alpha.8.2
+			c2me-opts-chunkio: Concurrent Chunk Management Engine (Optimizations/Chunk IO) 0.2.0+alpha.8.2
+			c2me-opts-math: Concurrent Chunk Management Engine (Optimizations/Math) 0.2.0+alpha.8.2
+			c2me-opts-scheduling: Concurrent Chunk Management Engine (Optimizations/Scheduling) 0.2.0+alpha.8.2
+			c2me-opts-worldgen-general: Concurrent Chunk Management Engine (Optimizations/General WorldGen) 0.2.0+alpha.8.2
+			c2me-opts-worldgen-vanilla: Concurrent Chunk Management Engine (Optimizations/Vanilla WorldGen) 0.2.0+alpha.8.2
+			c2me-rewrites-chunkio: Concurrent Chunk Management Engine (Rewrites/Chunk IO) 0.2.0+alpha.8.2
+			c2me-server-utils: Concurrent Chunk Management Engine (Server Utils) 0.2.0+alpha.8.2
+			c2me-threading-chunkio: Concurrent Chunk Management Engine (Threading/WorldGen) 0.2.0+alpha.8.2
+			c2me-threading-lighting: Concurrent Chunk Management Engine (Threading/Lighting) 0.2.0+alpha.8.2
+			c2me-threading-scheduling: Concurrent Chunk Management Engine (Threading/Scheduling) 0.2.0+alpha.8.2
+			c2me-threading-worldgen: Concurrent Chunk Management Engine (Threading/WorldGen) 0.2.0+alpha.8.2
+			com_electronwill_night-config_core: core 3.6.5
+			com_electronwill_night-config_toml: toml 3.6.5
+			com_ibm_async_asyncutil: asyncutil 0.1.0
+			org_threadly_threadly: threadly 7.0
+		carpet: Carpet Mod 1.4.79
+		chunky: Chunky 1.2.217
+		citresewn: CIT Resewn 1.1.1+1.19
+			citresewn-defaults: CIT Resewn: Defaults 1.1.1+1.19
+		clienttweaks: Client Tweaks 8.0.0
+		cloth-config: Cloth Config v6 7.0.72
+			cloth-basic-math: cloth-basic-math 0.6.1
+		clumps: Clumps 9.0.0+3
+		continuity: Continuity 2.0.0+1.19
+		cull-less-leaves: Cull Less Leaves 1.0.2
+			com_github_llamalad7_mixinextras: mixinextras 0.0.10
+		cullleaves: Cull Leaves 2.3.4
+		dashloader: DashLoader 4.0.0+1.19
+			com_github_luben_zstd-jni: zstd-jni 1.5.2-2
+			dev_quantumfusion_hyphen: Hyphen 0.2.2
+			dev_quantumfusion_taski: Taski 1.1.0
+		dynamicfps: Dynamic FPS 2.2.0
+			com_moandjiezana_toml_toml4j: toml4j 0.7.2
+		enhancedblockentities: Enhanced Block Entities 0.7.1+1.19
+			advanced_runtime_resource_pack: Runtime Resource Pack 0.6.2
+			spruceui: SpruceUI 4.0.0+1.19
+		entityculling: EntityCulling-Fabric 1.5.2-mc1.19
+			com_logisticscraft_occlusionculling: occlusionculling 0.0.6-SNAPSHOT
+		fabric: Fabric API 0.58.0+1.19
+			fabric-api-base: Fabric API Base 0.4.9+e62f51a3a9
+			fabric-api-lookup-api-v1: Fabric API Lookup API (v1) 1.6.7+9ff28f40a9
+			fabric-biome-api-v1: Fabric Biome API (v1) 9.0.14+b2a4a624a9
+			fabric-blockrenderlayer-v1: Fabric BlockRenderLayer Registration (v1) 1.1.18+9ff28f40a9
+			fabric-command-api-v1: Fabric Command API (v1) 1.2.6+f71b366fa9
+			fabric-command-api-v2: Fabric Command API (v2) 2.1.2+0d55f585a9
+			fabric-commands-v0: Fabric Commands (v0) 0.2.23+df3654b3a9
+			fabric-containers-v0: Fabric Containers (v0) 0.1.28+df3654b3a9
+			fabric-content-registries-v0: Fabric Content Registries (v0) 3.2.1+07df213ea9
+			fabric-convention-tags-v1: Fabric Convention Tags 1.0.8+37622d24a9
+			fabric-crash-report-info-v1: Fabric Crash Report Info (v1) 0.2.3+bd0a0d4aa9
+			fabric-data-generation-api-v1: Fabric Data Generation API (v1) 5.1.2+a680b9b4a9
+			fabric-dimensions-v1: Fabric Dimensions API (v1) 2.1.28+a6d2f785a9
+			fabric-entity-events-v1: Fabric Entity Events (v1) 1.4.16+9ff28f40a9
+			fabric-events-interaction-v0: Fabric Events Interaction (v0) 0.4.26+9ff28f40a9
+			fabric-events-lifecycle-v0: Fabric Events Lifecycle (v0) 0.2.26+df3654b3a9
+			fabric-game-rule-api-v1: Fabric Game Rule API (v1) 1.0.19+18990361a9
+			fabric-item-api-v1: Fabric Item API (v1) 1.5.5+35a03c43a9
+			fabric-item-groups-v0: Fabric Item Groups (v0) 0.3.26+9ff28f40a9
+			fabric-key-binding-api-v1: Fabric Key Binding API (v1) 1.0.18+9ff28f40a9
+			fabric-keybindings-v0: Fabric Key Bindings (v0) 0.2.16+df3654b3a9
+			fabric-lifecycle-events-v1: Fabric Lifecycle Events (v1) 2.1.0+33fbc738a9
+			fabric-loot-api-v2: Fabric Loot API (v2) 1.1.1+03a4e568a9
+			fabric-loot-tables-v1: Fabric Loot Tables (v1) 1.1.4+9e7660c6a9
+			fabric-message-api-v1: Fabric Message API (v1) 1.0.1+513f4a59a9
+			fabric-mining-level-api-v1: Fabric Mining Level API (v1) 2.1.11+33fbc738a9
+			fabric-models-v0: Fabric Models (v0) 0.3.15+9ff28f40a9
+			fabric-networking-api-v1: Fabric Networking API (v1) 1.1.0+442de8b8a9
+			fabric-networking-v0: Fabric Networking (v0) 0.3.15+df3654b3a9
+			fabric-object-builder-api-v1: Fabric Object Builder API (v1) 4.0.8+9ff28f40a9
+			fabric-particles-v1: Fabric Particles (v1) 1.0.8+dc39553aa9
+			fabric-registry-sync-v0: Fabric Registry Sync (v0) 0.9.18+23c4cfefa9
+			fabric-renderer-api-v1: Fabric Renderer API (v1) 1.0.8+9ff28f40a9
+			fabric-renderer-indigo: Fabric Renderer - Indigo 0.6.10+5187d39fa9
+			fabric-renderer-registries-v1: Fabric Renderer Registries (v1) 3.2.18+df3654b3a9
+			fabric-rendering-data-attachment-v1: Fabric Rendering Data Attachment (v1) 0.3.12+9ff28f40a9
+			fabric-rendering-fluids-v1: Fabric Rendering Fluids (v1) 3.0.5+9ff28f40a9
+			fabric-rendering-v0: Fabric Rendering (v0) 1.1.20+df3654b3a9
+			fabric-rendering-v1: Fabric Rendering (v1) 1.10.14+9ff28f40a9
+			fabric-resource-conditions-api-v1: Fabric Resource Conditions API (v1) 2.0.9+e62f51a3a9
+			fabric-resource-loader-v0: Fabric Resource Loader (v0) 0.5.6+5f1a85e0a9
+			fabric-screen-api-v1: Fabric Screen API (v1) 1.0.24+f05effafa9
+			fabric-screen-handler-api-v1: Fabric Screen Handler API (v1) 1.2.7+9ff28f40a9
+			fabric-textures-v0: Fabric Textures (v0) 1.0.18+9ff28f40a9
+			fabric-transfer-api-v1: Fabric Transfer API (v1) 2.0.9+e62f51a3a9
+			fabric-transitive-access-wideners-v1: Fabric Transitive Access Wideners (v1) 1.1.1+9e7660c6a9
+		fabricloader: Fabric Loader 0.14.8
+		fabricskyboxes: FabricSkyBoxes 0.5.6
+		ferritecore: FerriteCore 4.2.1
+		forgetmechunk: Forget Me Chunk 1.0.4-1.18.X-1.19.X
+		healthcare: Health Care 1.1.0
+			config2brigadier: Config to Brigadier 1.1.4
+		ias: In-Game Account Switcher 7.2.0
+		indium: Indium 1.0.6+mc1.19
+		iris: Iris 1.2.5
+			org_anarres_jcpp: jcpp 1.4.14
+		java: OpenJDK 64-Bit Server VM 17
+		krypton: Krypton 0.2.0
+			com_velocitypowered_velocity-native: velocity-native 3.1.2-SNAPSHOT
+		ksyxis: Ksyxis 1.1
+		lambdynlights: LambDynamicLights 2.1.2+1.19
+			pride: Pride Lib 1.1.2+1.19
+		lazydfu: LazyDFU 0.1.3
+		lithium: Lithium 0.8.0
+		minecraft: Minecraft 1.19
+		minecraftcapes: MinecraftCapes Mod 12.0.2
+		modmenu: Mod Menu 4.0.0
+		mousewheelie: Mouse Wheelie 1.10.1+mc1.19-pre1
+			amecsapi: Amecs API 1.3.6+mc22w17a
+			coat: Coat 1.0.0-beta.18+mc22w17a
+			tweed4_annotated: tweed4_annotated 1.3.1+mc22w17a
+			tweed4_base: tweed4_base 1.6.0+mc22w17a
+			tweed4_data: tweed4_data 1.2.1+mc22w17a
+			tweed4_data_hjson: tweed4_data_hjson 1.1.1+mc22w17a
+			tweed4_tailor_coat: tweed4_tailor_coat 1.1.3+mc22w17a
+			tweed4_tailor_screen: tweed4_tailor_screen 1.1.1+mc22w17a
+		nomoreglowingpots: No More Glowing Pots 1.0.2
+		notenoughcrashes: Not Enough Crashes 4.1.6+1.19
+		purpurclient: Purpur Client 1.19-4
+			confabricate: confabricate 3.0.0-SNAPSHOT+4.1.2
+				com_typesafe_config: config 1.4.2
+				io_leangen_geantyref_geantyref: geantyref 1.3.13
+				org_spongepowered_configurate-core: configurate-core 4.1.2
+				org_spongepowered_configurate-extra-dfu4: configurate-extra-dfu4 4.1.2
+				org_spongepowered_configurate-gson: configurate-gson 4.1.2
+				org_spongepowered_configurate-hocon: configurate-hocon 4.1.2
+		reeses-sodium-options: Reese's Sodium Options 1.4.3+mc1.19-build.43
+		servercore: ServerCore 1.3.0-1.19
+			fabric-permissions-api-v0: fabric-permissions-api 0.1-SNAPSHOT
+			placeholder-api: Placeholder API 2.0.0-beta.3+1.19
+		skinlayers: 3d Skin Layers 1.4.7-mc1.19
+		smoothboot: Smooth Boot 1.19-1.7.1
+		sodium: Sodium 0.4.2+replaymod.rev.bfbc6de
+			org_joml_joml: joml 1.10.4
+		sodium-extra: Sodium Extra 0.4.5+mc1.19-build.43
+			caffeineconfig: CaffeineConfig 1.0.0+1.17
+		starlight: Starlight 1.1.1+fabric.ae22326
+		tiefix: TieFix 1.11.0
+		tooltipfix: ToolTip Fix 1.0.5-1.19
+		visualoverhaul: VisualOverhaul 4.1.1
+			midnightlib: MidnightLib 0.5.2
+		vmp: Very Many Players 0.2.0+beta.5.0
+		waystones: Waystones 11.1.0
+		worldedit: WorldEdit 7.2.11-beta-01+6200-0877589
+	Launched Version: 1.19
+	Backend library: LWJGL version 3.3.1 SNAPSHOT
+	Backend API: Unknown
+	Window size: <not initialized>
+	GL Caps: Using framebuffer using OpenGL 3.2
+	GL debug messages: <disabled>
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fabric'
+	Type: Client (map_client.txt)
+	CPU: <unknown>
+	Suspected Mods: Fabric Loader (fabricloader)
